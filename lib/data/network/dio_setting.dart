@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
+import 'package:test_app/recources/variables.dart';
 
 class DioSettings {
   static final mainServer = "https://jsonplaceholder.typicode.com/";
@@ -25,7 +26,7 @@ class DioSettings {
         onResponse: (response) {
           if (response.statusCode == 204) {
             throw DioError(
-              error: "Отсутствуют данные",
+              error: Variables.noData,
               response: Response(
                 statusCode: 400,
                 request: response.request,
@@ -36,7 +37,7 @@ class DioSettings {
         onError: (DioError error) async {
           if (error.type == DioErrorType.CONNECT_TIMEOUT) {
             throw DioError(
-              error: "Сервер не отвечает попробуйте еще раз",
+              error: Variables.serverError,
               response: Response(
                 statusCode: 400,
                 request: error.request,
@@ -44,7 +45,7 @@ class DioSettings {
             );
           } else if (error.message.contains("SocketException:")) {
             throw DioError(
-              error: "Отсутствует интернет соединение",
+              error: Variables.noInternet,
               response: Response(
                 statusCode: 400,
                 request: error.request,

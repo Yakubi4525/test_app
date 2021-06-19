@@ -14,7 +14,7 @@ class _$UserScreenEventTearOff {
   const _$UserScreenEventTearOff();
 
 // ignore: unused_element
-  _StartedEvent started() {
+  _StartedEvent initial() {
     return const _StartedEvent();
   }
 
@@ -32,23 +32,23 @@ const $UserScreenEvent = _$UserScreenEventTearOff();
 mixin _$UserScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult started(),
+    @required TResult initial(),
     @required TResult getDetailUser(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult started(),
+    TResult initial(),
     TResult getDetailUser(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult started(_StartedEvent value),
+    @required TResult initial(_StartedEvent value),
     @required TResult getDetailUser(_GetDetailUserEvent value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult started(_StartedEvent value),
+    TResult initial(_StartedEvent value),
     TResult getDetailUser(_GetDetailUserEvent value),
     @required TResult orElse(),
   });
@@ -96,7 +96,7 @@ class _$_StartedEvent implements _StartedEvent {
 
   @override
   String toString() {
-    return 'UserScreenEvent.started()';
+    return 'UserScreenEvent.initial()';
   }
 
   @override
@@ -110,24 +110,24 @@ class _$_StartedEvent implements _StartedEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult started(),
+    @required TResult initial(),
     @required TResult getDetailUser(),
   }) {
-    assert(started != null);
+    assert(initial != null);
     assert(getDetailUser != null);
-    return started();
+    return initial();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult started(),
+    TResult initial(),
     TResult getDetailUser(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (started != null) {
-      return started();
+    if (initial != null) {
+      return initial();
     }
     return orElse();
   }
@@ -135,24 +135,24 @@ class _$_StartedEvent implements _StartedEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult started(_StartedEvent value),
+    @required TResult initial(_StartedEvent value),
     @required TResult getDetailUser(_GetDetailUserEvent value),
   }) {
-    assert(started != null);
+    assert(initial != null);
     assert(getDetailUser != null);
-    return started(this);
+    return initial(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult started(_StartedEvent value),
+    TResult initial(_StartedEvent value),
     TResult getDetailUser(_GetDetailUserEvent value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (started != null) {
-      return started(this);
+    if (initial != null) {
+      return initial(this);
     }
     return orElse();
   }
@@ -201,10 +201,10 @@ class _$_GetDetailUserEvent implements _GetDetailUserEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult started(),
+    @required TResult initial(),
     @required TResult getDetailUser(),
   }) {
-    assert(started != null);
+    assert(initial != null);
     assert(getDetailUser != null);
     return getDetailUser();
   }
@@ -212,7 +212,7 @@ class _$_GetDetailUserEvent implements _GetDetailUserEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult started(),
+    TResult initial(),
     TResult getDetailUser(),
     @required TResult orElse(),
   }) {
@@ -226,10 +226,10 @@ class _$_GetDetailUserEvent implements _GetDetailUserEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult started(_StartedEvent value),
+    @required TResult initial(_StartedEvent value),
     @required TResult getDetailUser(_GetDetailUserEvent value),
   }) {
-    assert(started != null);
+    assert(initial != null);
     assert(getDetailUser != null);
     return getDetailUser(this);
   }
@@ -237,7 +237,7 @@ class _$_GetDetailUserEvent implements _GetDetailUserEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult started(_StartedEvent value),
+    TResult initial(_StartedEvent value),
     TResult getDetailUser(_GetDetailUserEvent value),
     @required TResult orElse(),
   }) {
@@ -268,13 +268,17 @@ class _$UserScreenStateTearOff {
   }
 
 // ignore: unused_element
-  _ErrorState error() {
-    return const _ErrorState();
+  _ErrorState error({@required String errorMessage}) {
+    return _ErrorState(
+      errorMessage: errorMessage,
+    );
   }
 
 // ignore: unused_element
-  _DataState data() {
-    return const _DataState();
+  _DataState data({@required List<User> userList}) {
+    return _DataState(
+      userList: userList,
+    );
   }
 }
 
@@ -288,15 +292,15 @@ mixin _$UserScreenState {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
-    @required TResult error(),
-    @required TResult data(),
+    @required TResult error(String errorMessage),
+    @required TResult data(List<User> userList),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
-    TResult error(),
-    TResult data(),
+    TResult error(String errorMessage),
+    TResult data(List<User> userList),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -374,8 +378,8 @@ class _$_InitialState implements _InitialState {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
-    @required TResult error(),
-    @required TResult data(),
+    @required TResult error(String errorMessage),
+    @required TResult data(List<User> userList),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -389,8 +393,8 @@ class _$_InitialState implements _InitialState {
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
-    TResult error(),
-    TResult data(),
+    TResult error(String errorMessage),
+    TResult data(List<User> userList),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -477,8 +481,8 @@ class _$_LoadingState implements _LoadingState {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
-    @required TResult error(),
-    @required TResult data(),
+    @required TResult error(String errorMessage),
+    @required TResult data(List<User> userList),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -492,8 +496,8 @@ class _$_LoadingState implements _LoadingState {
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
-    TResult error(),
-    TResult data(),
+    TResult error(String errorMessage),
+    TResult data(List<User> userList),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -544,6 +548,7 @@ abstract class _$ErrorStateCopyWith<$Res> {
   factory _$ErrorStateCopyWith(
           _ErrorState value, $Res Function(_ErrorState) then) =
       __$ErrorStateCopyWithImpl<$Res>;
+  $Res call({String errorMessage});
 }
 
 /// @nodoc
@@ -556,38 +561,63 @@ class __$ErrorStateCopyWithImpl<$Res>
 
   @override
   _ErrorState get _value => super._value as _ErrorState;
+
+  @override
+  $Res call({
+    Object errorMessage = freezed,
+  }) {
+    return _then(_ErrorState(
+      errorMessage: errorMessage == freezed
+          ? _value.errorMessage
+          : errorMessage as String,
+    ));
+  }
 }
 
 /// @nodoc
 class _$_ErrorState implements _ErrorState {
-  const _$_ErrorState();
+  const _$_ErrorState({@required this.errorMessage})
+      : assert(errorMessage != null);
+
+  @override
+  final String errorMessage;
 
   @override
   String toString() {
-    return 'UserScreenState.error()';
+    return 'UserScreenState.error(errorMessage: $errorMessage)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _ErrorState);
+    return identical(this, other) ||
+        (other is _ErrorState &&
+            (identical(other.errorMessage, errorMessage) ||
+                const DeepCollectionEquality()
+                    .equals(other.errorMessage, errorMessage)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMessage);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ErrorStateCopyWith<_ErrorState> get copyWith =>
+      __$ErrorStateCopyWithImpl<_ErrorState>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
-    @required TResult error(),
-    @required TResult data(),
+    @required TResult error(String errorMessage),
+    @required TResult data(List<User> userList),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(data != null);
-    return error();
+    return error(errorMessage);
   }
 
   @override
@@ -595,13 +625,13 @@ class _$_ErrorState implements _ErrorState {
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
-    TResult error(),
-    TResult data(),
+    TResult error(String errorMessage),
+    TResult data(List<User> userList),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (error != null) {
-      return error();
+      return error(errorMessage);
     }
     return orElse();
   }
@@ -639,7 +669,11 @@ class _$_ErrorState implements _ErrorState {
 }
 
 abstract class _ErrorState implements UserScreenState {
-  const factory _ErrorState() = _$_ErrorState;
+  const factory _ErrorState({@required String errorMessage}) = _$_ErrorState;
+
+  String get errorMessage;
+  @JsonKey(ignore: true)
+  _$ErrorStateCopyWith<_ErrorState> get copyWith;
 }
 
 /// @nodoc
@@ -647,6 +681,7 @@ abstract class _$DataStateCopyWith<$Res> {
   factory _$DataStateCopyWith(
           _DataState value, $Res Function(_DataState) then) =
       __$DataStateCopyWithImpl<$Res>;
+  $Res call({List<User> userList});
 }
 
 /// @nodoc
@@ -657,38 +692,60 @@ class __$DataStateCopyWithImpl<$Res> extends _$UserScreenStateCopyWithImpl<$Res>
 
   @override
   _DataState get _value => super._value as _DataState;
+
+  @override
+  $Res call({
+    Object userList = freezed,
+  }) {
+    return _then(_DataState(
+      userList: userList == freezed ? _value.userList : userList as List<User>,
+    ));
+  }
 }
 
 /// @nodoc
 class _$_DataState implements _DataState {
-  const _$_DataState();
+  const _$_DataState({@required this.userList}) : assert(userList != null);
+
+  @override
+  final List<User> userList;
 
   @override
   String toString() {
-    return 'UserScreenState.data()';
+    return 'UserScreenState.data(userList: $userList)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _DataState);
+    return identical(this, other) ||
+        (other is _DataState &&
+            (identical(other.userList, userList) ||
+                const DeepCollectionEquality()
+                    .equals(other.userList, userList)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userList);
+
+  @JsonKey(ignore: true)
+  @override
+  _$DataStateCopyWith<_DataState> get copyWith =>
+      __$DataStateCopyWithImpl<_DataState>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
-    @required TResult error(),
-    @required TResult data(),
+    @required TResult error(String errorMessage),
+    @required TResult data(List<User> userList),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(data != null);
-    return data();
+    return data(userList);
   }
 
   @override
@@ -696,13 +753,13 @@ class _$_DataState implements _DataState {
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
-    TResult error(),
-    TResult data(),
+    TResult error(String errorMessage),
+    TResult data(List<User> userList),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (data != null) {
-      return data();
+      return data(userList);
     }
     return orElse();
   }
@@ -740,5 +797,9 @@ class _$_DataState implements _DataState {
 }
 
 abstract class _DataState implements UserScreenState {
-  const factory _DataState() = _$_DataState;
+  const factory _DataState({@required List<User> userList}) = _$_DataState;
+
+  List<User> get userList;
+  @JsonKey(ignore: true)
+  _$DataStateCopyWith<_DataState> get copyWith;
 }

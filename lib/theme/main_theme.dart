@@ -11,9 +11,8 @@ class AppTheme {
     accentColor: ColorPalette.white,
     textTheme: TextTheme(
       headline1: TextThemes.tittlTextStyle,
-      headline2: TextThemes.h2textStyle,
+      headline2: TextThemes.headline2,
       bodyText1: TextThemes.simpleTextStyle,
-      bodyText2: TextThemes.h3textStyle,
     ),
   );
 
@@ -24,9 +23,8 @@ class AppTheme {
     backgroundColor: ColorPalette.white,
     textTheme: TextTheme(
       headline1: TextThemes.tittlTextStyle,
-      headline2: TextThemes.h2textStyle,
+      headline2: TextThemes.headline2,
       bodyText1: TextThemes.simpleTextStyle,
-      bodyText2: TextThemes.h3textStyle,
     ),
   );
 }

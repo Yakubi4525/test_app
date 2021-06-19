@@ -21,11 +21,10 @@ class ServerApi {
     try {
       Response response = await _dio.get('/users');
       if (response.statusCode == 200) {
-        print(response.data);
         return (response.data as List)
             .map((user) => User.fromJson(user))
             .toList();
-      }
+      } 
     } catch (error) {}
     return [];
   }

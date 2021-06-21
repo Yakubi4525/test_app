@@ -27,12 +27,12 @@ class DataRepository {
       return userList;
     } catch (error) {
       print(error.toString());
-      // rethrow;
+      rethrow;
     }
   }
 
   Future<List<Post>> getUserPosts({@required int userId}) async {
-    // try {
+    try {
     LocalService localService = LocalService();
     var userPostsList = await localService.getUserPosts(userId: userId);
     if (userPostsList.isEmpty) {
@@ -47,14 +47,14 @@ class DataRepository {
       await _localService.setUserPosts(postList: userPostsList, userId: userId);
     }
     return userPostsList;
-    // } catch (error) {
-    //   print(error.toString());
-    //  // rethrow;
-    // }
+    } catch (error) {
+      print(error.toString());
+      rethrow;
+    }
   }
 
   Future<List<Album>> getUserAlbums({@required int userId}) async {
-    // try {
+    try {
     LocalService localService = LocalService();
     var userAlbumList = await localService.getUserAlbums(userId: userId);
     if (userAlbumList.isEmpty) {
@@ -70,9 +70,9 @@ class DataRepository {
           albumList: userAlbumList, userId: userId);
     }
     return userAlbumList;
-    // } catch (error) {
-    //   print(error.toString());
-    //  // rethrow;
-    // }
+    } catch (error) {
+      print(error.toString());
+     rethrow;
+    }
   }
 }

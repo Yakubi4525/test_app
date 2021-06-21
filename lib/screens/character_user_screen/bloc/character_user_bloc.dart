@@ -27,18 +27,17 @@ class CharacterUserBloc extends Bloc<CharacterUserEvent, CharacterUserState> {
 
   Stream<CharacterUserState> _mapInitialEvent(_StartedEvent event) async* {
     yield CharacterUserState.loading();
-    // try {
-    var postList = await _dataRepository.getUserPosts(userId: event.userId);
-    var albumList = await _dataRepository.getUserAlbums(userId: event.userId);
-    yield CharacterUserState.data(posts: postList, albums: albumList);
-    if (postList != null && albumList != null) {
+    try {
+      var postList = await _dataRepository.getUserPosts(userId: event.userId);
+      var albumList = await _dataRepository.getUserAlbums(userId: event.userId);
       yield CharacterUserState.data(posts: postList, albums: albumList);
+      if (postList != null && albumList != null) {
+        yield CharacterUserState.data(posts: postList, albums: albumList);
+      }
+    } catch (errorMessage) {
+      print('error is $errorMessage');
+      yield CharacterUserState.error(errorMessage: errorMessage.toString());
     }
-    // yield CharacterUserState.data(userList: list);
-    // } catch (errorMessage) {
-    //   print('error is $errorMessage');
-    //   yield CharacterUserState.error(errorMessage: errorMessage.toString());
-    // }
   }
 
   Stream<CharacterUserState> _mapShowAllPostsEvent(_ShowAllPost event) async* {

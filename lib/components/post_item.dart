@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/models/album.dart';
+import 'package:test_app/models/post.dart';
 import 'package:test_app/theme/color_theme.dart';
 import 'package:test_app/theme/text_theme.dart';
 
-class ALbumItem extends StatelessWidget {
-  final Album album;
+class PostItem extends StatelessWidget {
+  final Post post;
 
-  const ALbumItem({Key key, this.album}) : super(key: key);
+  const PostItem({Key key, this.post}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +29,22 @@ class ALbumItem extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-              child: Text(
-                album.title,
-                style: TextThemes.headline2,
-                overflow: TextOverflow.ellipsis,
+              child: Column(
+                children: [
+                  Text(
+                    post.title,
+                    style: TextThemes.headline2,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                  Text(
+                    post.body,
+                    style: TextThemes.headline3
+                        .copyWith(color: ColorPalette.darkGreyColor),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                ],
               ),
             ),
           ),

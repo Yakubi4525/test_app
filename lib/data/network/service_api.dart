@@ -9,7 +9,6 @@ class ServerApi {
   DioSettings _dioSettings = DioSettings();
   Dio _dio = Dio();
   Map<String, dynamic> _request;
-
   static ServerApi _instance = new ServerApi.internal();
   factory ServerApi() => _instance;
   ServerApi.internal() {

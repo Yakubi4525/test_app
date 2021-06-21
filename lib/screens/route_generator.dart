@@ -1,7 +1,11 @@
 import 'package:test_app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:test_app/models/album.dart';
+import 'package:test_app/models/post.dart';
 import 'package:test_app/models/user.dart';
 import 'package:test_app/screens/character_user_screen/screen.dart';
+import 'package:test_app/screens/user_albums_screen/screen.dart';
+import 'package:test_app/screens/user_posts_screen/screen.dart';
 import 'package:test_app/screens/users_screen/screen.dart';
 import 'package:test_app/theme/color_theme.dart';
 
@@ -16,6 +20,24 @@ class RouteGenerator {
           return MaterialPageRoute(
             builder: (_) => CharacterUserScreen(
               user: args,
+            ),
+          );
+        }
+        return _errorRoute();
+      case '/user_posts':
+        if (args is List<Post>) {
+          return MaterialPageRoute(
+            builder: (_) => UserPostScreen(
+              userPosts: args,
+            ),
+          );
+        }
+        return _errorRoute();
+      case '/user_albums':
+        if (args is List<Album>) {
+          return MaterialPageRoute(
+            builder: (_) => UserAlbumsScreen(
+              userAlbums: args,
             ),
           );
         }

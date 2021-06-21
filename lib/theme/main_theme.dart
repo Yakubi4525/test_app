@@ -9,6 +9,14 @@ class AppTheme {
     colorScheme: ColorScheme.light(),
     backgroundColor: ColorPalette.white,
     accentColor: ColorPalette.white,
+    appBarTheme: AppBarTheme(
+      shadowColor: ColorPalette.darkGreyColor,
+      iconTheme: IconThemeData(
+        
+        color: ColorPalette.black,
+      ),
+      color: ColorPalette.black,
+    ),
     textTheme: TextTheme(
       headline1: TextThemes.tittlTextStyle,
       headline2: TextThemes.headline2,
@@ -21,6 +29,13 @@ class AppTheme {
     primaryColor: ColorPalette.mainColor,
     colorScheme: ColorScheme.light(),
     backgroundColor: ColorPalette.white,
+    appBarTheme: AppBarTheme(
+      shadowColor: ColorPalette.darkGreyColor,
+      iconTheme: IconThemeData(
+        color: ColorPalette.black,
+      ),
+      color: ColorPalette.black,
+    ),
     textTheme: TextTheme(
       headline1: TextThemes.tittlTextStyle,
       headline2: TextThemes.headline2,

@@ -6,5 +6,5 @@ class Variables {
   static String get noData => 'Отсутствуют данные';
   static String get serverError => 'Сервер не отвечает попробуйте еще раз';
   static String get noInternet => 'Отсутствует интернет соединение';
-  static String get allUsers => 'All User';
+  static String get allUsers => 'All Users';
 }

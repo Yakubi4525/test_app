@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
-part of 'user_screen_bloc.dart';
+part of 'character_user_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -10,79 +10,110 @@ part of 'user_screen_bloc.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-class _$UserScreenEventTearOff {
-  const _$UserScreenEventTearOff();
+class _$CharacterUserEventTearOff {
+  const _$CharacterUserEventTearOff();
 
 // ignore: unused_element
-  _StartedEvent initial() {
-    return const _StartedEvent();
+  _StartedEvent initial({@required int userId}) {
+    return _StartedEvent(
+      userId: userId,
+    );
   }
 
 // ignore: unused_element
-  _GetDetailUserEvent getDetailUser(int userid) {
-    return _GetDetailUserEvent(
-      userid,
+  _ShowAllPost showAllPosts({@required int userId}) {
+    return _ShowAllPost(
+      userId: userId,
+    );
+  }
+
+// ignore: unused_element
+  _ShowAllAlbums showAllAlbums({@required int userId}) {
+    return _ShowAllAlbums(
+      userId: userId,
     );
   }
 }
 
 /// @nodoc
 // ignore: unused_element
-const $UserScreenEvent = _$UserScreenEventTearOff();
+const $CharacterUserEvent = _$CharacterUserEventTearOff();
 
 /// @nodoc
-mixin _$UserScreenEvent {
+mixin _$CharacterUserEvent {
+  int get userId;
+
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult getDetailUser(int userid),
+    @required TResult initial(int userId),
+    @required TResult showAllPosts(int userId),
+    @required TResult showAllAlbums(int userId),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult getDetailUser(int userid),
+    TResult initial(int userId),
+    TResult showAllPosts(int userId),
+    TResult showAllAlbums(int userId),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initial(_StartedEvent value),
-    @required TResult getDetailUser(_GetDetailUserEvent value),
+    @required TResult showAllPosts(_ShowAllPost value),
+    @required TResult showAllAlbums(_ShowAllAlbums value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(_StartedEvent value),
-    TResult getDetailUser(_GetDetailUserEvent value),
+    TResult showAllPosts(_ShowAllPost value),
+    TResult showAllAlbums(_ShowAllAlbums value),
     @required TResult orElse(),
   });
+
+  @JsonKey(ignore: true)
+  $CharacterUserEventCopyWith<CharacterUserEvent> get copyWith;
 }
 
 /// @nodoc
-abstract class $UserScreenEventCopyWith<$Res> {
-  factory $UserScreenEventCopyWith(
-          UserScreenEvent value, $Res Function(UserScreenEvent) then) =
-      _$UserScreenEventCopyWithImpl<$Res>;
+abstract class $CharacterUserEventCopyWith<$Res> {
+  factory $CharacterUserEventCopyWith(
+          CharacterUserEvent value, $Res Function(CharacterUserEvent) then) =
+      _$CharacterUserEventCopyWithImpl<$Res>;
+  $Res call({int userId});
 }
 
 /// @nodoc
-class _$UserScreenEventCopyWithImpl<$Res>
-    implements $UserScreenEventCopyWith<$Res> {
-  _$UserScreenEventCopyWithImpl(this._value, this._then);
+class _$CharacterUserEventCopyWithImpl<$Res>
+    implements $CharacterUserEventCopyWith<$Res> {
+  _$CharacterUserEventCopyWithImpl(this._value, this._then);
 
-  final UserScreenEvent _value;
+  final CharacterUserEvent _value;
   // ignore: unused_field
-  final $Res Function(UserScreenEvent) _then;
+  final $Res Function(CharacterUserEvent) _then;
+
+  @override
+  $Res call({
+    Object userId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      userId: userId == freezed ? _value.userId : userId as int,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class _$StartedEventCopyWith<$Res> {
+abstract class _$StartedEventCopyWith<$Res>
+    implements $CharacterUserEventCopyWith<$Res> {
   factory _$StartedEventCopyWith(
           _StartedEvent value, $Res Function(_StartedEvent) then) =
       __$StartedEventCopyWithImpl<$Res>;
+  @override
+  $Res call({int userId});
 }
 
 /// @nodoc
 class __$StartedEventCopyWithImpl<$Res>
-    extends _$UserScreenEventCopyWithImpl<$Res>
+    extends _$CharacterUserEventCopyWithImpl<$Res>
     implements _$StartedEventCopyWith<$Res> {
   __$StartedEventCopyWithImpl(
       _StartedEvent _value, $Res Function(_StartedEvent) _then)
@@ -90,46 +121,70 @@ class __$StartedEventCopyWithImpl<$Res>
 
   @override
   _StartedEvent get _value => super._value as _StartedEvent;
+
+  @override
+  $Res call({
+    Object userId = freezed,
+  }) {
+    return _then(_StartedEvent(
+      userId: userId == freezed ? _value.userId : userId as int,
+    ));
+  }
 }
 
 /// @nodoc
 class _$_StartedEvent implements _StartedEvent {
-  const _$_StartedEvent();
+  const _$_StartedEvent({@required this.userId}) : assert(userId != null);
+
+  @override
+  final int userId;
 
   @override
   String toString() {
-    return 'UserScreenEvent.initial()';
+    return 'CharacterUserEvent.initial(userId: $userId)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _StartedEvent);
+    return identical(this, other) ||
+        (other is _StartedEvent &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userId);
+
+  @JsonKey(ignore: true)
+  @override
+  _$StartedEventCopyWith<_StartedEvent> get copyWith =>
+      __$StartedEventCopyWithImpl<_StartedEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult getDetailUser(int userid),
+    @required TResult initial(int userId),
+    @required TResult showAllPosts(int userId),
+    @required TResult showAllAlbums(int userId),
   }) {
     assert(initial != null);
-    assert(getDetailUser != null);
-    return initial();
+    assert(showAllPosts != null);
+    assert(showAllAlbums != null);
+    return initial(userId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult getDetailUser(int userid),
+    TResult initial(int userId),
+    TResult showAllPosts(int userId),
+    TResult showAllAlbums(int userId),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initial != null) {
-      return initial();
+      return initial(userId);
     }
     return orElse();
   }
@@ -138,10 +193,12 @@ class _$_StartedEvent implements _StartedEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initial(_StartedEvent value),
-    @required TResult getDetailUser(_GetDetailUserEvent value),
+    @required TResult showAllPosts(_ShowAllPost value),
+    @required TResult showAllAlbums(_ShowAllAlbums value),
   }) {
     assert(initial != null);
-    assert(getDetailUser != null);
+    assert(showAllPosts != null);
+    assert(showAllAlbums != null);
     return initial(this);
   }
 
@@ -149,7 +206,8 @@ class _$_StartedEvent implements _StartedEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(_StartedEvent value),
-    TResult getDetailUser(_GetDetailUserEvent value),
+    TResult showAllPosts(_ShowAllPost value),
+    TResult showAllAlbums(_ShowAllAlbums value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -160,89 +218,100 @@ class _$_StartedEvent implements _StartedEvent {
   }
 }
 
-abstract class _StartedEvent implements UserScreenEvent {
-  const factory _StartedEvent() = _$_StartedEvent;
-}
-
-/// @nodoc
-abstract class _$GetDetailUserEventCopyWith<$Res> {
-  factory _$GetDetailUserEventCopyWith(
-          _GetDetailUserEvent value, $Res Function(_GetDetailUserEvent) then) =
-      __$GetDetailUserEventCopyWithImpl<$Res>;
-  $Res call({int userid});
-}
-
-/// @nodoc
-class __$GetDetailUserEventCopyWithImpl<$Res>
-    extends _$UserScreenEventCopyWithImpl<$Res>
-    implements _$GetDetailUserEventCopyWith<$Res> {
-  __$GetDetailUserEventCopyWithImpl(
-      _GetDetailUserEvent _value, $Res Function(_GetDetailUserEvent) _then)
-      : super(_value, (v) => _then(v as _GetDetailUserEvent));
+abstract class _StartedEvent implements CharacterUserEvent {
+  const factory _StartedEvent({@required int userId}) = _$_StartedEvent;
 
   @override
-  _GetDetailUserEvent get _value => super._value as _GetDetailUserEvent;
+  int get userId;
+  @override
+  @JsonKey(ignore: true)
+  _$StartedEventCopyWith<_StartedEvent> get copyWith;
+}
+
+/// @nodoc
+abstract class _$ShowAllPostCopyWith<$Res>
+    implements $CharacterUserEventCopyWith<$Res> {
+  factory _$ShowAllPostCopyWith(
+          _ShowAllPost value, $Res Function(_ShowAllPost) then) =
+      __$ShowAllPostCopyWithImpl<$Res>;
+  @override
+  $Res call({int userId});
+}
+
+/// @nodoc
+class __$ShowAllPostCopyWithImpl<$Res>
+    extends _$CharacterUserEventCopyWithImpl<$Res>
+    implements _$ShowAllPostCopyWith<$Res> {
+  __$ShowAllPostCopyWithImpl(
+      _ShowAllPost _value, $Res Function(_ShowAllPost) _then)
+      : super(_value, (v) => _then(v as _ShowAllPost));
+
+  @override
+  _ShowAllPost get _value => super._value as _ShowAllPost;
 
   @override
   $Res call({
-    Object userid = freezed,
+    Object userId = freezed,
   }) {
-    return _then(_GetDetailUserEvent(
-      userid == freezed ? _value.userid : userid as int,
+    return _then(_ShowAllPost(
+      userId: userId == freezed ? _value.userId : userId as int,
     ));
   }
 }
 
 /// @nodoc
-class _$_GetDetailUserEvent implements _GetDetailUserEvent {
-  const _$_GetDetailUserEvent(this.userid) : assert(userid != null);
+class _$_ShowAllPost implements _ShowAllPost {
+  const _$_ShowAllPost({@required this.userId}) : assert(userId != null);
 
   @override
-  final int userid;
+  final int userId;
 
   @override
   String toString() {
-    return 'UserScreenEvent.getDetailUser(userid: $userid)';
+    return 'CharacterUserEvent.showAllPosts(userId: $userId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GetDetailUserEvent &&
-            (identical(other.userid, userid) ||
-                const DeepCollectionEquality().equals(other.userid, userid)));
+        (other is _ShowAllPost &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userid);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userId);
 
   @JsonKey(ignore: true)
   @override
-  _$GetDetailUserEventCopyWith<_GetDetailUserEvent> get copyWith =>
-      __$GetDetailUserEventCopyWithImpl<_GetDetailUserEvent>(this, _$identity);
+  _$ShowAllPostCopyWith<_ShowAllPost> get copyWith =>
+      __$ShowAllPostCopyWithImpl<_ShowAllPost>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult getDetailUser(int userid),
+    @required TResult initial(int userId),
+    @required TResult showAllPosts(int userId),
+    @required TResult showAllAlbums(int userId),
   }) {
     assert(initial != null);
-    assert(getDetailUser != null);
-    return getDetailUser(userid);
+    assert(showAllPosts != null);
+    assert(showAllAlbums != null);
+    return showAllPosts(userId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult getDetailUser(int userid),
+    TResult initial(int userId),
+    TResult showAllPosts(int userId),
+    TResult showAllAlbums(int userId),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (getDetailUser != null) {
-      return getDetailUser(userid);
+    if (showAllPosts != null) {
+      return showAllPosts(userId);
     }
     return orElse();
   }
@@ -251,39 +320,171 @@ class _$_GetDetailUserEvent implements _GetDetailUserEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initial(_StartedEvent value),
-    @required TResult getDetailUser(_GetDetailUserEvent value),
+    @required TResult showAllPosts(_ShowAllPost value),
+    @required TResult showAllAlbums(_ShowAllAlbums value),
   }) {
     assert(initial != null);
-    assert(getDetailUser != null);
-    return getDetailUser(this);
+    assert(showAllPosts != null);
+    assert(showAllAlbums != null);
+    return showAllPosts(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(_StartedEvent value),
-    TResult getDetailUser(_GetDetailUserEvent value),
+    TResult showAllPosts(_ShowAllPost value),
+    TResult showAllAlbums(_ShowAllAlbums value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (getDetailUser != null) {
-      return getDetailUser(this);
+    if (showAllPosts != null) {
+      return showAllPosts(this);
     }
     return orElse();
   }
 }
 
-abstract class _GetDetailUserEvent implements UserScreenEvent {
-  const factory _GetDetailUserEvent(int userid) = _$_GetDetailUserEvent;
+abstract class _ShowAllPost implements CharacterUserEvent {
+  const factory _ShowAllPost({@required int userId}) = _$_ShowAllPost;
 
-  int get userid;
+  @override
+  int get userId;
+  @override
   @JsonKey(ignore: true)
-  _$GetDetailUserEventCopyWith<_GetDetailUserEvent> get copyWith;
+  _$ShowAllPostCopyWith<_ShowAllPost> get copyWith;
 }
 
 /// @nodoc
-class _$UserScreenStateTearOff {
-  const _$UserScreenStateTearOff();
+abstract class _$ShowAllAlbumsCopyWith<$Res>
+    implements $CharacterUserEventCopyWith<$Res> {
+  factory _$ShowAllAlbumsCopyWith(
+          _ShowAllAlbums value, $Res Function(_ShowAllAlbums) then) =
+      __$ShowAllAlbumsCopyWithImpl<$Res>;
+  @override
+  $Res call({int userId});
+}
+
+/// @nodoc
+class __$ShowAllAlbumsCopyWithImpl<$Res>
+    extends _$CharacterUserEventCopyWithImpl<$Res>
+    implements _$ShowAllAlbumsCopyWith<$Res> {
+  __$ShowAllAlbumsCopyWithImpl(
+      _ShowAllAlbums _value, $Res Function(_ShowAllAlbums) _then)
+      : super(_value, (v) => _then(v as _ShowAllAlbums));
+
+  @override
+  _ShowAllAlbums get _value => super._value as _ShowAllAlbums;
+
+  @override
+  $Res call({
+    Object userId = freezed,
+  }) {
+    return _then(_ShowAllAlbums(
+      userId: userId == freezed ? _value.userId : userId as int,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_ShowAllAlbums implements _ShowAllAlbums {
+  const _$_ShowAllAlbums({@required this.userId}) : assert(userId != null);
+
+  @override
+  final int userId;
+
+  @override
+  String toString() {
+    return 'CharacterUserEvent.showAllAlbums(userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ShowAllAlbums &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userId);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ShowAllAlbumsCopyWith<_ShowAllAlbums> get copyWith =>
+      __$ShowAllAlbumsCopyWithImpl<_ShowAllAlbums>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(int userId),
+    @required TResult showAllPosts(int userId),
+    @required TResult showAllAlbums(int userId),
+  }) {
+    assert(initial != null);
+    assert(showAllPosts != null);
+    assert(showAllAlbums != null);
+    return showAllAlbums(userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(int userId),
+    TResult showAllPosts(int userId),
+    TResult showAllAlbums(int userId),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (showAllAlbums != null) {
+      return showAllAlbums(userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_StartedEvent value),
+    @required TResult showAllPosts(_ShowAllPost value),
+    @required TResult showAllAlbums(_ShowAllAlbums value),
+  }) {
+    assert(initial != null);
+    assert(showAllPosts != null);
+    assert(showAllAlbums != null);
+    return showAllAlbums(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_StartedEvent value),
+    TResult showAllPosts(_ShowAllPost value),
+    TResult showAllAlbums(_ShowAllAlbums value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (showAllAlbums != null) {
+      return showAllAlbums(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ShowAllAlbums implements CharacterUserEvent {
+  const factory _ShowAllAlbums({@required int userId}) = _$_ShowAllAlbums;
+
+  @override
+  int get userId;
+  @override
+  @JsonKey(ignore: true)
+  _$ShowAllAlbumsCopyWith<_ShowAllAlbums> get copyWith;
+}
+
+/// @nodoc
+class _$CharacterUserStateTearOff {
+  const _$CharacterUserStateTearOff();
 
 // ignore: unused_element
   _InitialState initial() {
@@ -303,32 +504,33 @@ class _$UserScreenStateTearOff {
   }
 
 // ignore: unused_element
-  _DataState data({@required List<User> userList}) {
+  _DataState data({@required List<Post> posts, @required List<Album> albums}) {
     return _DataState(
-      userList: userList,
+      posts: posts,
+      albums: albums,
     );
   }
 }
 
 /// @nodoc
 // ignore: unused_element
-const $UserScreenState = _$UserScreenStateTearOff();
+const $CharacterUserState = _$CharacterUserStateTearOff();
 
 /// @nodoc
-mixin _$UserScreenState {
+mixin _$CharacterUserState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
     @required TResult error(String errorMessage),
-    @required TResult data(List<User> userList),
+    @required TResult data(List<Post> posts, List<Album> albums),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
     TResult error(String errorMessage),
-    TResult data(List<User> userList),
+    TResult data(List<Post> posts, List<Album> albums),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -349,20 +551,20 @@ mixin _$UserScreenState {
 }
 
 /// @nodoc
-abstract class $UserScreenStateCopyWith<$Res> {
-  factory $UserScreenStateCopyWith(
-          UserScreenState value, $Res Function(UserScreenState) then) =
-      _$UserScreenStateCopyWithImpl<$Res>;
+abstract class $CharacterUserStateCopyWith<$Res> {
+  factory $CharacterUserStateCopyWith(
+          CharacterUserState value, $Res Function(CharacterUserState) then) =
+      _$CharacterUserStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UserScreenStateCopyWithImpl<$Res>
-    implements $UserScreenStateCopyWith<$Res> {
-  _$UserScreenStateCopyWithImpl(this._value, this._then);
+class _$CharacterUserStateCopyWithImpl<$Res>
+    implements $CharacterUserStateCopyWith<$Res> {
+  _$CharacterUserStateCopyWithImpl(this._value, this._then);
 
-  final UserScreenState _value;
+  final CharacterUserState _value;
   // ignore: unused_field
-  final $Res Function(UserScreenState) _then;
+  final $Res Function(CharacterUserState) _then;
 }
 
 /// @nodoc
@@ -374,7 +576,7 @@ abstract class _$InitialStateCopyWith<$Res> {
 
 /// @nodoc
 class __$InitialStateCopyWithImpl<$Res>
-    extends _$UserScreenStateCopyWithImpl<$Res>
+    extends _$CharacterUserStateCopyWithImpl<$Res>
     implements _$InitialStateCopyWith<$Res> {
   __$InitialStateCopyWithImpl(
       _InitialState _value, $Res Function(_InitialState) _then)
@@ -390,7 +592,7 @@ class _$_InitialState implements _InitialState {
 
   @override
   String toString() {
-    return 'UserScreenState.initial()';
+    return 'CharacterUserState.initial()';
   }
 
   @override
@@ -407,7 +609,7 @@ class _$_InitialState implements _InitialState {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult error(String errorMessage),
-    @required TResult data(List<User> userList),
+    @required TResult data(List<Post> posts, List<Album> albums),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -422,7 +624,7 @@ class _$_InitialState implements _InitialState {
     TResult initial(),
     TResult loading(),
     TResult error(String errorMessage),
-    TResult data(List<User> userList),
+    TResult data(List<Post> posts, List<Album> albums),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -464,7 +666,7 @@ class _$_InitialState implements _InitialState {
   }
 }
 
-abstract class _InitialState implements UserScreenState {
+abstract class _InitialState implements CharacterUserState {
   const factory _InitialState() = _$_InitialState;
 }
 
@@ -477,7 +679,7 @@ abstract class _$LoadingStateCopyWith<$Res> {
 
 /// @nodoc
 class __$LoadingStateCopyWithImpl<$Res>
-    extends _$UserScreenStateCopyWithImpl<$Res>
+    extends _$CharacterUserStateCopyWithImpl<$Res>
     implements _$LoadingStateCopyWith<$Res> {
   __$LoadingStateCopyWithImpl(
       _LoadingState _value, $Res Function(_LoadingState) _then)
@@ -493,7 +695,7 @@ class _$_LoadingState implements _LoadingState {
 
   @override
   String toString() {
-    return 'UserScreenState.loading()';
+    return 'CharacterUserState.loading()';
   }
 
   @override
@@ -510,7 +712,7 @@ class _$_LoadingState implements _LoadingState {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult error(String errorMessage),
-    @required TResult data(List<User> userList),
+    @required TResult data(List<Post> posts, List<Album> albums),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -525,7 +727,7 @@ class _$_LoadingState implements _LoadingState {
     TResult initial(),
     TResult loading(),
     TResult error(String errorMessage),
-    TResult data(List<User> userList),
+    TResult data(List<Post> posts, List<Album> albums),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -567,7 +769,7 @@ class _$_LoadingState implements _LoadingState {
   }
 }
 
-abstract class _LoadingState implements UserScreenState {
+abstract class _LoadingState implements CharacterUserState {
   const factory _LoadingState() = _$_LoadingState;
 }
 
@@ -581,7 +783,7 @@ abstract class _$ErrorStateCopyWith<$Res> {
 
 /// @nodoc
 class __$ErrorStateCopyWithImpl<$Res>
-    extends _$UserScreenStateCopyWithImpl<$Res>
+    extends _$CharacterUserStateCopyWithImpl<$Res>
     implements _$ErrorStateCopyWith<$Res> {
   __$ErrorStateCopyWithImpl(
       _ErrorState _value, $Res Function(_ErrorState) _then)
@@ -612,7 +814,7 @@ class _$_ErrorState implements _ErrorState {
 
   @override
   String toString() {
-    return 'UserScreenState.error(errorMessage: $errorMessage)';
+    return 'CharacterUserState.error(errorMessage: $errorMessage)';
   }
 
   @override
@@ -639,7 +841,7 @@ class _$_ErrorState implements _ErrorState {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult error(String errorMessage),
-    @required TResult data(List<User> userList),
+    @required TResult data(List<Post> posts, List<Album> albums),
   }) {
     assert(initial != null);
     assert(loading != null);
@@ -654,7 +856,7 @@ class _$_ErrorState implements _ErrorState {
     TResult initial(),
     TResult loading(),
     TResult error(String errorMessage),
-    TResult data(List<User> userList),
+    TResult data(List<Post> posts, List<Album> albums),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -696,7 +898,7 @@ class _$_ErrorState implements _ErrorState {
   }
 }
 
-abstract class _ErrorState implements UserScreenState {
+abstract class _ErrorState implements CharacterUserState {
   const factory _ErrorState({@required String errorMessage}) = _$_ErrorState;
 
   String get errorMessage;
@@ -709,11 +911,12 @@ abstract class _$DataStateCopyWith<$Res> {
   factory _$DataStateCopyWith(
           _DataState value, $Res Function(_DataState) then) =
       __$DataStateCopyWithImpl<$Res>;
-  $Res call({List<User> userList});
+  $Res call({List<Post> posts, List<Album> albums});
 }
 
 /// @nodoc
-class __$DataStateCopyWithImpl<$Res> extends _$UserScreenStateCopyWithImpl<$Res>
+class __$DataStateCopyWithImpl<$Res>
+    extends _$CharacterUserStateCopyWithImpl<$Res>
     implements _$DataStateCopyWith<$Res> {
   __$DataStateCopyWithImpl(_DataState _value, $Res Function(_DataState) _then)
       : super(_value, (v) => _then(v as _DataState));
@@ -723,38 +926,47 @@ class __$DataStateCopyWithImpl<$Res> extends _$UserScreenStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object userList = freezed,
+    Object posts = freezed,
+    Object albums = freezed,
   }) {
     return _then(_DataState(
-      userList: userList == freezed ? _value.userList : userList as List<User>,
+      posts: posts == freezed ? _value.posts : posts as List<Post>,
+      albums: albums == freezed ? _value.albums : albums as List<Album>,
     ));
   }
 }
 
 /// @nodoc
 class _$_DataState implements _DataState {
-  const _$_DataState({@required this.userList}) : assert(userList != null);
+  const _$_DataState({@required this.posts, @required this.albums})
+      : assert(posts != null),
+        assert(albums != null);
 
   @override
-  final List<User> userList;
+  final List<Post> posts;
+  @override
+  final List<Album> albums;
 
   @override
   String toString() {
-    return 'UserScreenState.data(userList: $userList)';
+    return 'CharacterUserState.data(posts: $posts, albums: $albums)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _DataState &&
-            (identical(other.userList, userList) ||
-                const DeepCollectionEquality()
-                    .equals(other.userList, userList)));
+            (identical(other.posts, posts) ||
+                const DeepCollectionEquality().equals(other.posts, posts)) &&
+            (identical(other.albums, albums) ||
+                const DeepCollectionEquality().equals(other.albums, albums)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userList);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(posts) ^
+      const DeepCollectionEquality().hash(albums);
 
   @JsonKey(ignore: true)
   @override
@@ -767,13 +979,13 @@ class _$_DataState implements _DataState {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult error(String errorMessage),
-    @required TResult data(List<User> userList),
+    @required TResult data(List<Post> posts, List<Album> albums),
   }) {
     assert(initial != null);
     assert(loading != null);
     assert(error != null);
     assert(data != null);
-    return data(userList);
+    return data(posts, albums);
   }
 
   @override
@@ -782,12 +994,12 @@ class _$_DataState implements _DataState {
     TResult initial(),
     TResult loading(),
     TResult error(String errorMessage),
-    TResult data(List<User> userList),
+    TResult data(List<Post> posts, List<Album> albums),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (data != null) {
-      return data(userList);
+      return data(posts, albums);
     }
     return orElse();
   }
@@ -824,10 +1036,13 @@ class _$_DataState implements _DataState {
   }
 }
 
-abstract class _DataState implements UserScreenState {
-  const factory _DataState({@required List<User> userList}) = _$_DataState;
+abstract class _DataState implements CharacterUserState {
+  const factory _DataState(
+      {@required List<Post> posts,
+      @required List<Album> albums}) = _$_DataState;
 
-  List<User> get userList;
+  List<Post> get posts;
+  List<Album> get albums;
   @JsonKey(ignore: true)
   _$DataStateCopyWith<_DataState> get copyWith;
 }

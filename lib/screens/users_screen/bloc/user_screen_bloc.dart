@@ -11,7 +11,7 @@ part 'user_screen_bloc.freezed.dart';
 
 class UserScreenBloc extends Bloc<UserScreenEvent, UserScreenState> {
   UserScreenBloc() : super(_InitialState());
-  DataRepository _dataRepository=DataRepository();
+  DataRepository _dataRepository = DataRepository();
   @override
   Stream<UserScreenState> mapEventToState(
     UserScreenEvent event,
@@ -26,12 +26,13 @@ class UserScreenBloc extends Bloc<UserScreenEvent, UserScreenState> {
       var list = await _dataRepository.getAllUser();
       yield UserScreenState.data(userList: list);
     } catch (errorMessage) {
-      print('error is $errorMessage');
+      yield UserScreenState.error(errorMessage: errorMessage);
     }
   }
 
   Stream<UserScreenState> _mapGetDetailUservent(
       _GetDetailUserEvent event) async* {
     yield UserScreenState.loading();
+    var user = await _dataRepository.getUserPosts(userId: event.userid);
   }
 }

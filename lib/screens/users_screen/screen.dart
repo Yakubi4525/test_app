@@ -11,31 +11,38 @@ import 'package:test_app/theme/text_theme.dart';
 class UsersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<UserScreenBloc, UserScreenState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        return state.maybeMap(
-          initial: (_) => CustomLoaderWidget(),
-          loading: (_) => CustomLoaderWidget(),
-          error: (_error) => CustomErrorWidget(error: _error.errorMessage),
-          data: (_data) => Scaffold(
-            appBar: AppBar(
-              centerTitle: true,
-              backgroundColor: ColorPalette.white,
-              title: Text(
-                Variables.allUsers,
-                style: TextThemes.headline2.copyWith(color: ColorPalette.black),
+    return BlocProvider(
+      create: (context) => UserScreenBloc()
+        ..add(
+          UserScreenEvent.initial(),
+        ),
+      child: BlocConsumer<UserScreenBloc, UserScreenState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return state.maybeMap(
+            initial: (_) => CustomLoaderWidget(),
+            loading: (_) => CustomLoaderWidget(),
+            error: (_error) => CustomErrorWidget(error: _error.errorMessage),
+            data: (_data) => Scaffold(
+              appBar: AppBar(
+                centerTitle: true,
+                backgroundColor: ColorPalette.white,
+                title: Text(
+                  Variables.allUsers,
+                  style:
+                      TextThemes.headline2.copyWith(color: ColorPalette.black),
+                ),
+              ),
+              body: Container(
+                child: ListViewBuilder(
+                  userList: _data.userList,
+                ),
               ),
             ),
-            body: Container(
-              child: ListViewBuilder(
-                userList: _data.userList,
-              ),
-            ),
-          ),
-          orElse: () => Container(),
-        );
-      },
+            orElse: () => Container(),
+          );
+        },
+      ),
     );
   }
 }

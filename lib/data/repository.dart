@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:test_app/data/local/local_service.dart';
 import 'package:test_app/data/network/service_api.dart';
 import 'package:test_app/models/album.dart';
+import 'package:test_app/models/comment.dart';
+import 'package:test_app/models/photo.dart';
 import 'package:test_app/models/post.dart';
 import 'package:test_app/models/user.dart';
 
@@ -33,20 +35,16 @@ class DataRepository {
 
   Future<List<Post>> getUserPosts({@required int userId}) async {
     try {
-    LocalService localService = LocalService();
-    var userPostsList = await localService.getUserPosts(userId: userId);
-    if (userPostsList.isEmpty) {
-      var postList = await _serverApi.getAllPosts();
-      print('from server');
-
-      for (Post post in postList) {
-        if (post.userId == userId) {
-          userPostsList.add(post);
-        }
+      LocalService localService = LocalService();
+      var userPostsList = await localService.getUserPosts(userId: userId);
+      if (userPostsList.isEmpty) {
+        print('im here');
+        userPostsList = await _serverApi.getAllPosts(userId: userId);
+        print('userposts: $userPostsList');
+        await _localService.setUserPosts(
+            postList: userPostsList, userId: userId);
       }
-      await _localService.setUserPosts(postList: userPostsList, userId: userId);
-    }
-    return userPostsList;
+      return userPostsList;
     } catch (error) {
       print(error.toString());
       rethrow;
@@ -55,24 +53,49 @@ class DataRepository {
 
   Future<List<Album>> getUserAlbums({@required int userId}) async {
     try {
-    LocalService localService = LocalService();
-    var userAlbumList = await localService.getUserAlbums(userId: userId);
-    if (userAlbumList.isEmpty) {
-      var albumList = await _serverApi.getAllAlbums();
-      print('from server');
-
-      for (Album album in albumList) {
-        if (album.userId == userId) {
-          userAlbumList.add(album);
-        }
+      LocalService localService = LocalService();
+      var userAlbumList = await localService.getUserAlbums(userId: userId);
+      if (userAlbumList.isEmpty) {
+        userAlbumList = await _serverApi.getAllAlbums(userId: userId);
+        await _localService.setUserAlbums(
+            albumList: userAlbumList, userId: userId);
       }
-      await _localService.setUserAlbums(
-          albumList: userAlbumList, userId: userId);
-    }
-    return userAlbumList;
+      return userAlbumList;
     } catch (error) {
       print(error.toString());
-     rethrow;
+      rethrow;
+    }
+  }
+
+  Future<List<Comment>> getPostComments({@required int postId}) async {
+    try {
+      LocalService localService = LocalService();
+      var commentList = await localService.getPostComments(postId: postId);
+      if (commentList.isEmpty) {
+        commentList = await _serverApi.getPostComments(postId: postId);
+        await _localService.setPostComments(
+            commentList: commentList, postId: postId);
+      }
+      return commentList;
+    } catch (error) {
+      print(error.toString());
+      rethrow;
+    }
+  }
+
+  Future<List<Photos>> getAlbumPhotos({@required int albumId}) async {
+    try {
+      LocalService localService = LocalService();
+      var photoList = await localService.getAlbumPhotos(albumId: albumId);
+      if (photoList.isEmpty) {
+        photoList = await _serverApi.getAlbumPhotos(albumId: albumId);
+        await _localService.setAlbumPhotos(
+            photoLiist: photoList, albumId: albumId);
+      }
+      return photoList;
+    } catch (error) {
+      print(error.toString());
+      rethrow;
     }
   }
 }

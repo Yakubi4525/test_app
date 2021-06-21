@@ -30,7 +30,6 @@ class CharacterUserBloc extends Bloc<CharacterUserEvent, CharacterUserState> {
     try {
       var postList = await _dataRepository.getUserPosts(userId: event.userId);
       var albumList = await _dataRepository.getUserAlbums(userId: event.userId);
-      yield CharacterUserState.data(posts: postList, albums: albumList);
       if (postList != null && albumList != null) {
         yield CharacterUserState.data(posts: postList, albums: albumList);
       }

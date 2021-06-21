@@ -79,7 +79,7 @@ class CharacterUserScreen extends StatelessWidget {
                                   color: ColorPalette.black, fontSize: 18),
                             ),
                             Container(
-                              height: 280,
+                              height: 300,
                               child: PostViewWidget(
                                 scrollController: _scrollController,
                                 postList: _data.posts,
@@ -96,7 +96,9 @@ class CharacterUserScreen extends StatelessWidget {
                                     arguments: _data.posts);
                               },
                             ),
-                            LineWidget(),
+                            SizedBox(
+                              height: 16,
+                            ),
                             Text(
                               "Albums:",
                               style: TextThemes.headline2.copyWith(

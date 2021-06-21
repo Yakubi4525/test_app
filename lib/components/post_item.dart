@@ -12,7 +12,7 @@ class PostItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.of(context).pushNamed('/character_user', arguments: user);
+        Navigator.of(context).pushNamed('/character_post', arguments: post);
       },
       child: Padding(
         padding: const EdgeInsets.all(8),

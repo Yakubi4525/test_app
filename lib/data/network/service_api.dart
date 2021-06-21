@@ -1,7 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:test_app/data/network/dio_setting.dart';
 import 'package:test_app/models/album.dart';
+import 'package:test_app/models/comment.dart';
+import 'package:test_app/models/photo.dart';
 import 'package:test_app/models/post.dart';
 import 'package:test_app/models/user.dart';
 
@@ -29,10 +32,10 @@ class ServerApi {
     return [];
   }
 
-  Future<List<Post>> getAllPosts() async {
+  Future<List<Post>> getAllPosts({@required int userId}) async {
     _dio.interceptors.add(LogInterceptor());
     try {
-      Response response = await _dio.get('/posts');
+      Response response = await _dio.get('/posts?userId=$userId');
       if (response.statusCode == 200 && response.data != null) {
         return (response.data as List)
             .map((post) => Post.fromJson(post))
@@ -44,15 +47,43 @@ class ServerApi {
     return [];
   }
 
-  Future<List<Album>> getAllAlbums() async {
+  Future<List<Album>> getAllAlbums({@required int userId}) async {
     _dio.interceptors.add(LogInterceptor());
     try {
-    Response response = await _dio.get('/albums');
-    if (response.statusCode == 200 && response.data != null) {
-      return (response.data as List)
-          .map((album) => Album.fromJson(album))
-          .toList();
+      Response response = await _dio.get('/albums?userId=$userId');
+      if (response.statusCode == 200 && response.data != null) {
+        return (response.data as List)
+            .map((album) => Album.fromJson(album))
+            .toList();
+      }
+    } catch (error) {
+      print(error.toString());
     }
+    return [];
+  }
+    Future<List<Comment>> getPostComments({@required int postId}) async {
+    _dio.interceptors.add(LogInterceptor());
+    try {
+      Response response = await _dio.get('/comments?postId=$postId');
+      if (response.statusCode == 200 && response.data != null) {
+        return (response.data as List)
+            .map((album) => Comment.fromJson(album))
+            .toList();
+      }
+    } catch (error) {
+      print(error.toString());
+    }
+    return [];
+  }
+    Future<List<Photos>> getAlbumPhotos({@required int albumId}) async {
+    _dio.interceptors.add(LogInterceptor());
+    try {
+      Response response = await _dio.get('/photos?albumId=$albumId');
+      if (response.statusCode == 200 && response.data != null) {
+        return (response.data as List)
+            .map((album) => Photos.fromJson(album))
+            .toList();
+      }
     } catch (error) {
       print(error.toString());
     }

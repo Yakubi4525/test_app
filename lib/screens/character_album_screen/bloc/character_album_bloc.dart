@@ -27,11 +27,9 @@ class CharacterAlbumBloc
       var commentList =
           await _dataRepository.getAlbumPhotos(albumId: event.albumId);
       if (commentList != null && commentList.isNotEmpty) {
-        print('commentlist $commentList');
         yield CharacterAlbumState.data(photoList: commentList);
       }
     } catch (errorMessage) {
-      print('error is $errorMessage');
       yield CharacterAlbumState.error(errorMessage: errorMessage.toString());
     }
   }

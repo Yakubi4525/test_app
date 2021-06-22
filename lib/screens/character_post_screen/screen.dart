@@ -30,7 +30,6 @@ class CharacterPostScreen extends StatelessWidget {
   CharacterPostScreen({Key key, this.post}) : super(key: key);
   @override
   Widget build(BuildContext pageContext) {
-    Size _size = MediaQuery.of(pageContext).size;
     ScrollController _scrollController;
     return BlocProvider(
       create: (_) => CharacterPostBloc()
@@ -90,143 +89,9 @@ class CharacterPostScreen extends StatelessWidget {
                       SimpleButton(
                         name: 'Add Comment',
                         function: () {
-                          showDialog(
-                            context: blocPostContext,
-                            builder: (dialogContext) {
-                              return Center(
-                                child: SingleChildScrollView(
-                                  child: AlertDialog(
-                                    title: Center(child: Text('Add Comment')),
-                                    titleTextStyle: TextThemes.headline2
-                                        .copyWith(color: ColorPalette.black),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(15),
-                                      ),
-                                    ),
-                                    content: SingleChildScrollView(
-                                      child: Container(
-                                        height: _size.height * 0.61,
-                                        width: _size.width * 0.9,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                CustomTextWidget(
-                                                  textValue: "Input your name",
-                                                ),
-                                                SizedBox(
-                                                  height: 8,
-                                                ),
-                                                InputWidget(
-                                                  keyValue: keys1,
-                                                  controller: _nameController,
-                                                  hintText: 'name',
-                                                  validationFunction: (str) {
-                                                    if (str.length == 0) {
-                                                      return "Name must be > 0";
-                                                    }
-                                                    return null;
-                                                  },
-                                                ),
-                                                SizedBox(
-                                                  height: 16,
-                                                ),
-                                                CustomTextWidget(
-                                                  textValue: "Input your email",
-                                                ),
-                                                SizedBox(
-                                                  height: 8,
-                                                ),
-                                                InputWidget(
-                                                  keyValue: keys2,
-                                                  validationFunction: (str) {
-                                                    if (str.length == 0) {
-                                                      return "email must be > 0 and contains '@'";
-                                                    }
-                                                    if (!str.contains('@')) {
-                                                      return "email must contains '@'";
-                                                    }
-                                                    return null;
-                                                  },
-                                                  controller: _emailController,
-                                                  hintText: 'e-mail',
-                                                ),
-                                                SizedBox(
-                                                  height: 16,
-                                                ),
-                                                CustomTextWidget(
-                                                  textValue:
-                                                      "Input your message",
-                                                ),
-                                                SizedBox(
-                                                  height: 8,
-                                                ),
-                                                InputWidget(
-                                                  keyValue: keys3,
-                                                  validationFunction: (str) {
-                                                    if (str.length == 0) {
-                                                      return "Message must be > 0";
-                                                    }
-                                                    return null;
-                                                  },
-                                                  controller:
-                                                      _messageController,
-                                                  hintText: 'message',
-                                                ),
-                                                SizedBox(
-                                                  height: 32,
-                                                ),
-                                              ],
-                                            ),
-                                            SimpleButton(
-                                              name: 'Add Comment',
-                                              function: () {
-                                                print(
-                                                    'name ${_nameController.text}');
-                                                bool _first = keys1.currentState
-                                                    .validate();
-                                                bool _second = keys2
-                                                    .currentState
-                                                    .validate();
-                                                bool _third = keys3.currentState
-                                                    .validate();
-                                                if (!_first ||
-                                                    !_second ||
-                                                    !_third) {
-                                                  return;
-                                                }
-                                                comment = Comment(
-                                                  postId: post.id,
-                                                  name: _nameController.text,
-                                                  email: _emailController.text,
-                                                  body: _messageController.text,
-                                                  id: _data.commentList.length +
-                                                      1,
-                                                );
-                                                blocPostContext
-                                                    .read<CharacterPostBloc>()
-                                                      ..add(CharacterPostEvent
-                                                          .addComment(
-                                                              comment:
-                                                                  comment));
-
-                                                Navigator.pop(dialogContext);
-                                              },
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          );
+                          showCommentDialog(
+                              blocPostContext: blocPostContext,
+                              commentsCount: _data.commentList.length);
                         },
                       ),
                     ],
@@ -238,6 +103,118 @@ class CharacterPostScreen extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+
+  Future showCommentDialog(
+      {BuildContext blocPostContext, int commentsCount}) async {
+    return await showDialog(
+      context: blocPostContext,
+      builder: (dialogContext) {
+        Size _size = MediaQuery.of(dialogContext).size;
+        return Center(
+          child: SingleChildScrollView(
+            child: AlertDialog(
+              title: Center(child: Text('Add Comment')),
+              titleTextStyle:
+                  TextThemes.headline2.copyWith(color: ColorPalette.black),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(15),
+                ),
+              ),
+              content: SingleChildScrollView(
+                child: Container(
+                  height: _size.height * 0.61,
+                  width: _size.width * 0.9,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CustomTextWidget(
+                            textValue: "Input your name",
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          InputWidget(
+                            keyValue: keys1,
+                            controller: _nameController,
+                            hintText: 'name',
+                            validationFunction: (str) {
+                              if (str.length == 0) {
+                                return "Name must be > 0";
+                              }
+                              return null;
+                            },
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          CustomTextWidget(
+                            textValue: "Input your email",
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          InputWidget(
+                            keyValue: keys2,
+                            validationFunction: (str) {
+                              if (str.length == 0) {
+                                return "email must be > 0 and contains '@'";
+                              }
+                              if (!str.contains('@')) {
+                                return "email must contains '@'";
+                              }
+                              return null;
+                            },
+                            controller: _emailController,
+                            hintText: 'e-mail',
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          CustomTextWidget(
+                            textValue: "Input your message",
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          InputWidget(
+                            keyValue: keys3,
+                            validationFunction: (str) {
+                              if (str.length == 0) {
+                                return "Message must be > 0";
+                              }
+                              return null;
+                            },
+                            controller: _messageController,
+                            hintText: 'message',
+                          ),
+                          SizedBox(
+                            height: 32,
+                          ),
+                        ],
+                      ),
+                      SimpleButton(
+                        name: 'Add Comment',
+                        function: () {
+                          addComment(
+                              context: blocPostContext,
+                              commentsCount: commentsCount);
+                          Navigator.pop(dialogContext);
+                        },
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 

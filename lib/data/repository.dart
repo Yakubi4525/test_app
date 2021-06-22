@@ -36,9 +36,7 @@ class DataRepository {
     try {
       var userPostsList = await _localService.getUserPosts(userId: userId);
       if (userPostsList.isEmpty) {
-        print('im here');
         userPostsList = await _serverApi.getAllPosts(userId: userId);
-        print('userposts: $userPostsList');
         await _localService.setUserPosts(
             postList: userPostsList, userId: userId);
       }

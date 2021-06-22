@@ -99,7 +99,6 @@ class ServerApi {
           data: ServiceRequest.getBody(comment));
       if (response.statusCode == 201 && response.data != null) {
         print('Comment saved succesfully');
-        print('your comment; ${response.data}');
         return true;
       }
     } catch (error) {

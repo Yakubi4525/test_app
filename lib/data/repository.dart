@@ -20,8 +20,7 @@ class DataRepository {
 
   Future<List<User>> getAllUser() async {
     try {
-      LocalService localService = LocalService();
-      var userList = await localService.getAllusers();
+      var userList = await _localService.getAllusers();
       if (userList.isEmpty) {
         userList = await _serverApi.getAllUsers();
         await _localService.setAllusers(userList);
@@ -35,8 +34,7 @@ class DataRepository {
 
   Future<List<Post>> getUserPosts({@required int userId}) async {
     try {
-      LocalService localService = LocalService();
-      var userPostsList = await localService.getUserPosts(userId: userId);
+      var userPostsList = await _localService.getUserPosts(userId: userId);
       if (userPostsList.isEmpty) {
         print('im here');
         userPostsList = await _serverApi.getAllPosts(userId: userId);
@@ -53,8 +51,7 @@ class DataRepository {
 
   Future<List<Album>> getUserAlbums({@required int userId}) async {
     try {
-      LocalService localService = LocalService();
-      var userAlbumList = await localService.getUserAlbums(userId: userId);
+      var userAlbumList = await _localService.getUserAlbums(userId: userId);
       if (userAlbumList.isEmpty) {
         userAlbumList = await _serverApi.getAllAlbums(userId: userId);
         await _localService.setUserAlbums(
@@ -69,8 +66,7 @@ class DataRepository {
 
   Future<List<Comment>> getPostComments({@required int postId}) async {
     try {
-      LocalService localService = LocalService();
-      var commentList = await localService.getPostComments(postId: postId);
+      var commentList = await _localService.getPostComments(postId: postId);
       if (commentList.isEmpty) {
         commentList = await _serverApi.getPostComments(postId: postId);
         await _localService.setPostComments(
@@ -83,10 +79,25 @@ class DataRepository {
     }
   }
 
+  Future<bool> setOneComment({@required Comment comment}) async {
+    try {
+      await _localService.setLocalComment(comment: comment);
+      var apiComment = await _serverApi.addComments(comment: comment);
+      if (apiComment == true) {
+        return true;
+      }
+      return false;
+    } catch (error) {
+      print(
+        error.toString(),
+      );
+      return false;
+    }
+  }
+
   Future<List<Photos>> getAlbumPhotos({@required int albumId}) async {
     try {
-      LocalService localService = LocalService();
-      var photoList = await localService.getAlbumPhotos(albumId: albumId);
+      var photoList = await _localService.getAlbumPhotos(albumId: albumId);
       if (photoList.isEmpty) {
         photoList = await _serverApi.getAlbumPhotos(albumId: albumId);
         await _localService.setAlbumPhotos(

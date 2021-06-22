@@ -17,7 +17,7 @@ class CharacterPostBloc extends Bloc<CharacterPostEvent, CharacterPostState> {
   Stream<CharacterPostState> mapEventToState(
     CharacterPostEvent event,
   ) async* {
-    yield* event.map(started: _mapInitialEvent);
+    yield* event.map(started: _mapInitialEvent, addComment: _mapCommentEvent);
   }
 
   Stream<CharacterPostState> _mapInitialEvent(_Started event) async* {
@@ -26,6 +26,21 @@ class CharacterPostBloc extends Bloc<CharacterPostEvent, CharacterPostState> {
       var commentList =
           await _dataRepository.getPostComments(postId: event.postId);
       if (commentList != null && commentList.isNotEmpty) {
+        yield CharacterPostState.data(commentList: commentList);
+      }
+    } catch (errorMessage) {
+      print('error is $errorMessage');
+      yield CharacterPostState.error(errorMessage: errorMessage.toString());
+    }
+  }
+
+  Stream<CharacterPostState> _mapCommentEvent(_Comment event) async* {
+    yield CharacterPostState.loading();
+    try {
+      var comment = await _dataRepository.setOneComment(comment: event.comment);
+      var commentList =
+          await _dataRepository.getPostComments(postId: event.comment.postId);
+      if (commentList != null && commentList.isNotEmpty && comment == true) {
         yield CharacterPostState.data(commentList: commentList);
       }
     } catch (errorMessage) {

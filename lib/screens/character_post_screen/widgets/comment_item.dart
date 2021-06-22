@@ -5,6 +5,7 @@ import 'package:test_app/theme/text_theme.dart';
 
 class CommentItem extends StatelessWidget {
   final Comment comment;
+  
 
   CommentItem({this.comment});
 

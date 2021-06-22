@@ -42,6 +42,14 @@ class LocalService {
       {@required List<Comment> commentList, @required int postId}) async {
     var list = commentList.map((comment) => jsonEncode(comment)).toList();
     await _preferences.setStringList(_keyPostComment + postId.toString(), list);
+
+  }
+
+  Future setLocalComment({@required Comment comment}) async {
+    var list = await getPostComments(postId: comment.postId);
+    list.add(comment);
+     var listString = list.map((comment) => jsonEncode(comment)).toList();
+    await _preferences.setStringList(_keyPostComment + comment.postId.toString(), listString);
   }
 
   Future setAlbumPhotos(
@@ -52,7 +60,7 @@ class LocalService {
 
   Future<List<User>> getAllusers() async {
     _preferences = await SharedPreferences.getInstance();
-    var stringList = await _preferences.getStringList(_keyAllUsers);
+    var stringList =  _preferences.getStringList(_keyAllUsers);
     if (stringList == null) {
       return [];
     }
@@ -65,7 +73,7 @@ class LocalService {
   Future<List<Post>> getUserPosts({@required int userId}) async {
     _preferences = await SharedPreferences.getInstance();
     var stringList =
-        await _preferences.getStringList(_keyUsersPost + userId.toString());
+         _preferences.getStringList(_keyUsersPost + userId.toString());
     if (stringList != null) {
       var list = stringList.map((post) => jsonDecode(post)).toList();
       List<Post> postList = list.map((post) => Post.fromJson(post)).toList();
@@ -77,7 +85,7 @@ class LocalService {
   Future<List<Album>> getUserAlbums({@required int userId}) async {
     _preferences = await SharedPreferences.getInstance();
     var stringList =
-        await _preferences.getStringList(_keyUsersAlbum + userId.toString());
+         _preferences.getStringList(_keyUsersAlbum + userId.toString());
     if (stringList == null) {
       return [];
     } else {
@@ -87,10 +95,11 @@ class LocalService {
       return albumList;
     }
   }
-    Future<List<Comment>> getPostComments({@required int postId}) async {
+
+  Future<List<Comment>> getPostComments({@required int postId}) async {
     _preferences = await SharedPreferences.getInstance();
     var stringList =
-        await _preferences.getStringList(_keyPostComment + postId.toString());
+         _preferences.getStringList(_keyPostComment + postId.toString());
     if (stringList == null) {
       return [];
     } else {
@@ -100,10 +109,11 @@ class LocalService {
       return albumList;
     }
   }
-    Future<List<Photos>> getAlbumPhotos({@required int albumId}) async {
+
+  Future<List<Photos>> getAlbumPhotos({@required int albumId}) async {
     _preferences = await SharedPreferences.getInstance();
     var stringList =
-        await _preferences.getStringList(_keyUsersAlbum + albumId.toString());
+         _preferences.getStringList(_keyUsersAlbum + albumId.toString());
     if (stringList == null) {
       return [];
     } else {

@@ -23,7 +23,7 @@ class SliderItem extends StatelessWidget {
                   fit: BoxFit.cover,
                   image: photo.url == null
                       ? NetworkImage(
-                          "https://xn--80adjxnbeifs.xn--p1ai/thumb/2/TMuenNye52cacuxaDpW8xg/r/d/fgs16_image-placeholder.png")
+                          "https://yt3.ggpht.com/a/AATXAJwssbfpB96zdJJl6r6o162sSZEdQvmyukUe4A=s900-c-k-c0xffffffff-no-rj-mo")
                       : NetworkImage(photo.url)),
             ),
           ),
@@ -51,7 +51,7 @@ class SliderItem extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Text(
-                    photo.url,
+                    photo.title,
                     style: TextThemes.headline2.copyWith(color: ColorPalette.white)
                   ),
                 ],

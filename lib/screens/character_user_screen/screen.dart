@@ -22,7 +22,6 @@ class CharacterUserScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScrollController _scrollController = ScrollController();
-    Size size = MediaQuery.of(context).size;
 
     return BlocProvider(
       create: (context) => CharacterUserBloc()

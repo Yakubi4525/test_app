@@ -5,7 +5,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:test_app/data/repository.dart';
 import 'package:test_app/models/album.dart';
 import 'package:test_app/models/post.dart';
-import 'package:test_app/models/user.dart';
 
 part 'character_user_event.dart';
 part 'character_user_state.dart';

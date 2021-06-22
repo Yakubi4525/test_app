@@ -4,9 +4,7 @@ import 'package:test_app/components/error_widget.dart';
 import 'package:test_app/components/loading_widget.dart';
 import 'package:test_app/models/album.dart';
 import 'package:test_app/screens/character_album_screen/bloc/character_album_bloc.dart';
-import 'package:test_app/screens/character_album_screen/widgets/slider_item.dart';
 import 'package:test_app/screens/character_album_screen/widgets/slider_view.dart';
-import 'package:test_app/screens/character_user_screen/widgets/info_widget.dart';
 import 'package:test_app/theme/color_theme.dart';
 import 'package:test_app/theme/text_theme.dart';
 
@@ -16,7 +14,6 @@ class CharacterAlbumScreen extends StatelessWidget {
   const CharacterAlbumScreen({Key key, this.album}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    ScrollController _scrollController;
     return BlocProvider(
       create: (context) => CharacterAlbumBloc()
         ..add(

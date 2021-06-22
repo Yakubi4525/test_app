@@ -19,6 +19,13 @@ class _$CharacterPostEventTearOff {
       postId: postId,
     );
   }
+
+// ignore: unused_element
+  _Comment addComment({Comment comment}) {
+    return _Comment(
+      comment: comment,
+    );
+  }
 }
 
 /// @nodoc
@@ -27,29 +34,28 @@ const $CharacterPostEvent = _$CharacterPostEventTearOff();
 
 /// @nodoc
 mixin _$CharacterPostEvent {
-  int get postId;
-
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(int postId),
+    @required TResult addComment(Comment comment),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(int postId),
+    TResult addComment(Comment comment),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
+    @required TResult addComment(_Comment value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
+    TResult addComment(_Comment value),
     @required TResult orElse(),
   });
-
-  @JsonKey(ignore: true)
-  $CharacterPostEventCopyWith<CharacterPostEvent> get copyWith;
 }
 
 /// @nodoc
@@ -57,7 +63,6 @@ abstract class $CharacterPostEventCopyWith<$Res> {
   factory $CharacterPostEventCopyWith(
           CharacterPostEvent value, $Res Function(CharacterPostEvent) then) =
       _$CharacterPostEventCopyWithImpl<$Res>;
-  $Res call({int postId});
 }
 
 /// @nodoc
@@ -68,23 +73,12 @@ class _$CharacterPostEventCopyWithImpl<$Res>
   final CharacterPostEvent _value;
   // ignore: unused_field
   final $Res Function(CharacterPostEvent) _then;
-
-  @override
-  $Res call({
-    Object postId = freezed,
-  }) {
-    return _then(_value.copyWith(
-      postId: postId == freezed ? _value.postId : postId as int,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$StartedCopyWith<$Res>
-    implements $CharacterPostEventCopyWith<$Res> {
+abstract class _$StartedCopyWith<$Res> {
   factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
       __$StartedCopyWithImpl<$Res>;
-  @override
   $Res call({int postId});
 }
 
@@ -141,8 +135,10 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(int postId),
+    @required TResult addComment(Comment comment),
   }) {
     assert(started != null);
+    assert(addComment != null);
     return started(postId);
   }
 
@@ -150,6 +146,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(int postId),
+    TResult addComment(Comment comment),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -163,8 +160,10 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
+    @required TResult addComment(_Comment value),
   }) {
     assert(started != null);
+    assert(addComment != null);
     return started(this);
   }
 
@@ -172,6 +171,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
+    TResult addComment(_Comment value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -185,11 +185,124 @@ class _$_Started implements _Started {
 abstract class _Started implements CharacterPostEvent {
   const factory _Started({int postId}) = _$_Started;
 
-  @override
   int get postId;
-  @override
   @JsonKey(ignore: true)
   _$StartedCopyWith<_Started> get copyWith;
+}
+
+/// @nodoc
+abstract class _$CommentCopyWith<$Res> {
+  factory _$CommentCopyWith(_Comment value, $Res Function(_Comment) then) =
+      __$CommentCopyWithImpl<$Res>;
+  $Res call({Comment comment});
+}
+
+/// @nodoc
+class __$CommentCopyWithImpl<$Res>
+    extends _$CharacterPostEventCopyWithImpl<$Res>
+    implements _$CommentCopyWith<$Res> {
+  __$CommentCopyWithImpl(_Comment _value, $Res Function(_Comment) _then)
+      : super(_value, (v) => _then(v as _Comment));
+
+  @override
+  _Comment get _value => super._value as _Comment;
+
+  @override
+  $Res call({
+    Object comment = freezed,
+  }) {
+    return _then(_Comment(
+      comment: comment == freezed ? _value.comment : comment as Comment,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_Comment implements _Comment {
+  const _$_Comment({this.comment});
+
+  @override
+  final Comment comment;
+
+  @override
+  String toString() {
+    return 'CharacterPostEvent.addComment(comment: $comment)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _Comment &&
+            (identical(other.comment, comment) ||
+                const DeepCollectionEquality().equals(other.comment, comment)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(comment);
+
+  @JsonKey(ignore: true)
+  @override
+  _$CommentCopyWith<_Comment> get copyWith =>
+      __$CommentCopyWithImpl<_Comment>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(int postId),
+    @required TResult addComment(Comment comment),
+  }) {
+    assert(started != null);
+    assert(addComment != null);
+    return addComment(comment);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(int postId),
+    TResult addComment(Comment comment),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (addComment != null) {
+      return addComment(comment);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult addComment(_Comment value),
+  }) {
+    assert(started != null);
+    assert(addComment != null);
+    return addComment(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult addComment(_Comment value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (addComment != null) {
+      return addComment(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Comment implements CharacterPostEvent {
+  const factory _Comment({Comment comment}) = _$_Comment;
+
+  Comment get comment;
+  @JsonKey(ignore: true)
+  _$CommentCopyWith<_Comment> get copyWith;
 }
 
 /// @nodoc

@@ -1,7 +1,5 @@
-import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/widgets.dart';
 import 'package:test_app/recources/variables.dart';
 
 class DioSettings {

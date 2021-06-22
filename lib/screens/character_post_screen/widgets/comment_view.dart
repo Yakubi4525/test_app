@@ -19,7 +19,7 @@ class CommentViewWidget extends StatelessWidget {
             : new ScrollController(),
         itemCount: commentList.length,
         itemBuilder: (context, index) {
-          return CommentItem(comment: commentList[index]);
+          return CommentItem(comment: commentList[index],);
         },
       ),
     );

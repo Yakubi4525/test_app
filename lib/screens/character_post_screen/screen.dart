@@ -1,30 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_app/components/error_widget.dart';
+import 'package:test_app/components/input_widget.dart';
 import 'package:test_app/components/loading_widget.dart';
 import 'package:test_app/components/simple_button.dart';
+import 'package:test_app/components/text_label.dart';
+import 'package:test_app/models/comment.dart';
 import 'package:test_app/models/post.dart';
 import 'package:test_app/screens/character_post_screen/bloc/character_post_bloc.dart';
 import 'package:test_app/screens/character_post_screen/widgets/comment_view.dart';
 import 'package:test_app/theme/color_theme.dart';
 import 'package:test_app/theme/text_theme.dart';
 
+// ignore: must_be_immutable
 class CharacterPostScreen extends StatelessWidget {
   final Post post;
-  const CharacterPostScreen({Key key, this.post}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    Size _size = MediaQuery.of(context).size;
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _messageController = TextEditingController();
+  static final keys1 = GlobalKey<FormState>(debugLabel: '_nameDebug');
+  static final keys2 = GlobalKey<FormState>(debugLabel: '_emailDebug');
+  static final keys3 = GlobalKey<FormState>(debugLabel: '_messageDebug');
+  Comment comment;
 
+  Future addNewComment() {
+    return null;
+  }
+
+  CharacterPostScreen({Key key, this.post}) : super(key: key);
+  @override
+  Widget build(BuildContext pageContext) {
+    Size _size = MediaQuery.of(pageContext).size;
     ScrollController _scrollController;
     return BlocProvider(
-      create: (context) => CharacterPostBloc()
+      create: (_) => CharacterPostBloc()
         ..add(
           CharacterPostEvent.started(postId: post.id),
         ),
-      child: BlocConsumer<CharacterPostBloc, CharacterPostState>(
-        listener: (context, state) {},
-        builder: (context, state) {
+      child: BlocBuilder<CharacterPostBloc, CharacterPostState>(
+        builder: (blocPostContext, state) {
           return state.maybeMap(
             initial: (_) => CustomLoaderWidget(),
             loading: (_) => CustomLoaderWidget(),
@@ -77,8 +91,8 @@ class CharacterPostScreen extends StatelessWidget {
                         name: 'Add Comment',
                         function: () {
                           showDialog(
-                            context: context,
-                            builder: (context) {
+                            context: blocPostContext,
+                            builder: (dialogContext) {
                               return Center(
                                 child: SingleChildScrollView(
                                   child: AlertDialog(
@@ -92,11 +106,119 @@ class CharacterPostScreen extends StatelessWidget {
                                     ),
                                     content: SingleChildScrollView(
                                       child: Container(
-                                        height: _size.height * 0.45,
+                                        height: _size.height * 0.61,
                                         width: _size.width * 0.9,
                                         child: Column(
-                                          
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                CustomTextWidget(
+                                                  textValue: "Input your name",
+                                                ),
+                                                SizedBox(
+                                                  height: 8,
+                                                ),
+                                                InputWidget(
+                                                  keyValue: keys1,
+                                                  controller: _nameController,
+                                                  hintText: 'name',
+                                                  validationFunction: (str) {
+                                                    if (str.length == 0) {
+                                                      return "Name must be > 0";
+                                                    }
+                                                    return null;
+                                                  },
+                                                ),
+                                                SizedBox(
+                                                  height: 16,
+                                                ),
+                                                CustomTextWidget(
+                                                  textValue: "Input your email",
+                                                ),
+                                                SizedBox(
+                                                  height: 8,
+                                                ),
+                                                InputWidget(
+                                                  keyValue: keys2,
+                                                  validationFunction: (str) {
+                                                    if (str.length == 0) {
+                                                      return "email must be > 0 and contains '@'";
+                                                    }
+                                                    if (!str.contains('@')) {
+                                                      return "email must contains '@'";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  controller: _emailController,
+                                                  hintText: 'e-mail',
+                                                ),
+                                                SizedBox(
+                                                  height: 16,
+                                                ),
+                                                CustomTextWidget(
+                                                  textValue:
+                                                      "Input your message",
+                                                ),
+                                                SizedBox(
+                                                  height: 8,
+                                                ),
+                                                InputWidget(
+                                                  keyValue: keys3,
+                                                  validationFunction: (str) {
+                                                    if (str.length == 0) {
+                                                      return "Message must be > 0";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  controller:
+                                                      _messageController,
+                                                  hintText: 'message',
+                                                ),
+                                                SizedBox(
+                                                  height: 32,
+                                                ),
+                                              ],
+                                            ),
+                                            SimpleButton(
+                                              name: 'Add Comment',
+                                              function: () {
+                                                print(
+                                                    'name ${_nameController.text}');
+                                                bool _first = keys1.currentState
+                                                    .validate();
+                                                bool _second = keys2
+                                                    .currentState
+                                                    .validate();
+                                                bool _third = keys3.currentState
+                                                    .validate();
+                                                if (!_first ||
+                                                    !_second ||
+                                                    !_third) {
+                                                  return;
+                                                }
+                                                comment = Comment(
+                                                  postId: post.id,
+                                                  name: _nameController.text,
+                                                  email: _emailController.text,
+                                                  body: _messageController.text,
+                                                  id: _data.commentList.length +
+                                                      1,
+                                                );
+                                                blocPostContext
+                                                    .read<CharacterPostBloc>()
+                                                      ..add(CharacterPostEvent
+                                                          .addComment(
+                                                              comment:
+                                                                  comment));
 
+                                                Navigator.pop(dialogContext);
+                                              },
+                                            )
+                                          ],
                                         ),
                                       ),
                                     ),
@@ -105,8 +227,6 @@ class CharacterPostScreen extends StatelessWidget {
                               );
                             },
                           );
-                          // Navigator.of(context).pushNamed('/user_posts',
-                          //     arguments: _data.posts);
                         },
                       ),
                     ],
@@ -119,5 +239,25 @@ class CharacterPostScreen extends StatelessWidget {
         },
       ),
     );
+  }
+
+  void addComment(
+      {@required int commentsCount, @required BuildContext context}) {
+    print('name ${_nameController.text}');
+    bool _first = keys1.currentState.validate();
+    bool _second = keys2.currentState.validate();
+    bool _third = keys3.currentState.validate();
+    if (!_first || !_second || !_third) {
+      return;
+    }
+    comment = Comment(
+      postId: post.id,
+      name: _nameController.text,
+      email: _emailController.text,
+      body: _messageController.text,
+      id: commentsCount + 1,
+    );
+    context.read<CharacterPostBloc>()
+      ..add(CharacterPostEvent.addComment(comment: comment));
   }
 }

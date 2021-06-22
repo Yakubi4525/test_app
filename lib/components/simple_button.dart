@@ -32,6 +32,6 @@ class SimpleButton extends StatelessWidget {
         ),
       ),
     );
-    ;
+    
   }
 }

@@ -1,4 +1,3 @@
-import 'package:test_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:test_app/models/album.dart';
 import 'package:test_app/models/post.dart';

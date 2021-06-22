@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:test_app/data/network/dio_setting.dart';
+import 'package:test_app/data/network/service_request.dart';
 import 'package:test_app/models/album.dart';
 import 'package:test_app/models/comment.dart';
 import 'package:test_app/models/photo.dart';
@@ -11,7 +12,6 @@ import 'package:test_app/models/user.dart';
 class ServerApi {
   DioSettings _dioSettings = DioSettings();
   Dio _dio = Dio();
-  Map<String, dynamic> _request;
   static ServerApi _instance = new ServerApi.internal();
   factory ServerApi() => _instance;
   ServerApi.internal() {
@@ -61,7 +61,8 @@ class ServerApi {
     }
     return [];
   }
-    Future<List<Comment>> getPostComments({@required int postId}) async {
+
+  Future<List<Comment>> getPostComments({@required int postId}) async {
     _dio.interceptors.add(LogInterceptor());
     try {
       Response response = await _dio.get('/comments?postId=$postId');
@@ -75,7 +76,8 @@ class ServerApi {
     }
     return [];
   }
-    Future<List<Photos>> getAlbumPhotos({@required int albumId}) async {
+
+  Future<List<Photos>> getAlbumPhotos({@required int albumId}) async {
     _dio.interceptors.add(LogInterceptor());
     try {
       Response response = await _dio.get('/photos?albumId=$albumId');
@@ -88,5 +90,24 @@ class ServerApi {
       print(error.toString());
     }
     return [];
+  }
+
+  Future<bool> addComments({@required Comment comment}) async {
+    _dio.interceptors.add(LogInterceptor());
+    try {
+      Response response = await _dio.post('/comments?postId=${comment.postId}',
+          data: ServiceRequest.getBody(comment));
+      if (response.statusCode == 201 && response.data != null) {
+        print('Comment saved succesfully');
+        print('your comment; ${response.data}');
+        return true;
+      }
+    } catch (error) {
+      print(
+        error.toString(),
+      );
+      return false;
+    }
+    return false;
   }
 }

@@ -33,6 +33,6 @@ class UserScreenBloc extends Bloc<UserScreenEvent, UserScreenState> {
   Stream<UserScreenState> _mapGetDetailUservent(
       _GetDetailUserEvent event) async* {
     yield UserScreenState.loading();
-    var user = await _dataRepository.getUserPosts(userId: event.userid);
+    await _dataRepository.getUserPosts(userId: event.userid);
   }
 }
